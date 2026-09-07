@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journey Awaits</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #0a0a0a;
+      background-image: url('journeyawaits.jpg');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Blue button - I'm Scared (halfway between left and center) */
+    .back-link {
+      position: fixed;
+      bottom: 40px;
+      left: 25%;
+      transform: translateX(-50%);
+      z-index: 10;
+      color: #4da6ff;
+      text-decoration: none;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      padding: 12px 28px;
+      border: 1px solid rgba(77, 166, 255, 0.5);
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.45);
+      transition: all 0.3s ease;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    }
+    .back-link:hover {
+      color: #7ec8ff;
+      border-color: #7ec8ff;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(77, 166, 255, 0.45);
+    }
+
+    /* Red button - Start Journey (halfway between center and right) */
+    .start-link {
+      position: fixed;
+      bottom: 40px;
+      left: 75%;
+      transform: translateX(-50%);
+      z-index: 10;
+      color: #ff2a2a;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      padding: 12px 28px;
+      border: 1px solid rgba(255, 42, 42, 0.5);
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.45);
+      transition: all 0.3s ease;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      cursor: pointer;
+    }
+    .start-link:hover {
+      color: #ff4d4d;
+      border-color: #ff1a1a;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(255, 26, 26, 0.45);
+    }
+
+    /* Dark yellow state after clicking */
+    .start-link.denied {
+      color: #c9a227;
+      border-color: #c9a227;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 15px rgba(201, 162, 39, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="homepage.html" class="back-link">I'm Scared</a>
+  <button class="start-link" id="startBtn">Start Journey</button>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+
+    startBtn.addEventListener('click', () => {
+      startBtn.textContent = "Access Denied";
+      startBtn.classList.add('denied');
+    });
+  </script>
+
+</body>
+</html>

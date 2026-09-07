@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7Level Records – Under Construction</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #0a0a0a;
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 0;
+    }
+    h1, p, .play-section, .matrix-link {
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.85);
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.6rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    .matrix-link {
+      font-size: 2.5rem;
+      opacity: 0.95;
+      letter-spacing: 0.5px;
+      margin-bottom: 3rem;
+      color: #ff2a2a;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-block;
+      font-family: monospace;
+      padding: 10px 22px;
+      border: 1px solid rgba(255, 42, 42, 0.5);
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 0 12px rgba(255, 26, 26, 0.5);
+    }
+    .matrix-link:hover {
+      color: #ff4d4d;
+      border-color: #ff1a1a;
+      background: rgba(0, 0, 0, 0.6);
+      text-shadow: 0 0 18px #ff1a1a, 0 0 30px rgba(255, 26, 26, 0.7);
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 26, 26, 0.4);
+    }
+    .play-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .play-section p {
+      font-size: 1.25rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+    button {
+      background: rgba(20, 20, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: white;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+    }
+    button:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Secret button – right side (Nexus) */
+    .secret-btn {
+      position: fixed;
+      right: 25%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 240px;
+      background-color: #ff1a1a;
+      opacity: 0.3;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 9999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      display: block;
+    }
+    .secret-btn:hover {
+      width: 22px;
+      opacity: 1;
+      background-color: #00ff41;
+      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+    }
+
+    /* Secret button – left side (SavageDaffy) */
+    .secret-btn-left {
+      position: fixed;
+      left: 25%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 240px;
+      background-color: #ff1a1a;
+      opacity: 0.3;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 9999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      display: block;
+    }
+    .secret-btn-left:hover {
+      width: 22px;
+      opacity: 1;
+      background-color: #00ff41;
+      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+    }
+
+    /* Secret button – bottom (Nethervoid) */
+    .secret-btn-bottom {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 14px;
+      background-color: #ff1a1a;
+      opacity: 0.3;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 9999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      display: block;
+    }
+    .secret-btn-bottom:hover {
+      height: 20px;
+      opacity: 1;
+      background-color: #00ff41;
+      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+    }
+
+    /* Secret button – top (Journey Awaits) */
+    .secret-btn-top {
+      position: fixed;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 14px;
+      background-color: #ff1a1a;
+      opacity: 0.3;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 9999;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      display: block;
+    }
+    .secret-btn-top:hover {
+      height: 20px;
+      opacity: 1;
+      background-color: #00ff41;
+      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <h1>YOU HAVE BEEN CHOSEN FOR</h1>
+
+  <a href="matrix.html" class="matrix-link" id="calibrateText">reA1ity R3cAlIbrAt10n</a>
+
+  <div class="play-section">
+    <p>Click here to be ENVENOMATED while you wait</p>
+    <button id="playBtn">(don't click me)</button>
+  </div>
+
+  <!-- Secret buttons -->
+  <a href="nexus.html" class="secret-btn">&nbsp;</a>
+  <a href="savagedaffy.html" class="secret-btn-left">&nbsp;</a>
+  <a href="nethervoid.html" class="secret-btn-bottom">&nbsp;</a>
+  <a href="journeyawaits.html" class="secret-btn-top">&nbsp;</a>
+
+  <audio id="venomTrack" src="VENOM.mp3" preload="auto"></audio>
+
+  <script>
+    // Play button
+    const btn = document.getElementById('playBtn');
+    const audio = document.getElementById('venomTrack');
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "Possession in progresS";
+      } else {
+        audio.pause();
+        btn.textContent = "(don't click me)";
+      }
+    });
+
+    // Calibrating text – each character switches independently
+    const versions = [
+      'reA1ity R3cAlIbrAt10n',
+      'REalITY reCaLiBRaTioN',
+      'r34L!t7 rEk^718r^t!On'
+    ];
+
+    const el = document.getElementById('calibrateText');
+    const length = versions[0].length;
+    const charState = new Array(length).fill(0);
+
+    function updateText() {
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += versions[charState[i]][i];
+      }
+      el.textContent = result;
+    }
+
+    for (let i = 0; i < length; i++) {
+      const interval = 2800 + Math.random() * 5000; // slow random intervals
+      setInterval(() => {
+        charState[i] = (charState[i] + 1) % versions.length;
+        updateText();
+      }, interval);
+    }
+
+    updateText();
+  </script>
+</body>
+</html>

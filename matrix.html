@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>reA1ity R3cAlIbrAt10n</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #000;
+      overflow: hidden;
+      height: 100vh;
+    }
+    canvas {
+      display: block;
+    }
+
+    .button-row {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .pill {
+      font-family: monospace;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.45);
+      transition: all 0.3s ease;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid;
+    }
+
+    /* Blue Pill */
+    .blue-pill {
+      color: #4da6ff;
+      border-color: rgba(77, 166, 255, 0.5);
+    }
+    .blue-pill:hover {
+      color: #7ec8ff;
+      border-color: #7ec8ff;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(77, 166, 255, 0.45);
+    }
+
+    /* Red Pill */
+    .red-pill {
+      color: #ff2a2a;
+      border-color: rgba(255, 42, 42, 0.5);
+    }
+    .red-pill:hover {
+      color: #ff4d4d;
+      border-color: #ff1a1a;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(255, 26, 26, 0.45);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <div class="button-row">
+    <a href="#" class="pill blue-pill">Blue Pill</a>
+    <a href="homepage.html" class="pill red-pill">Red Pill</a>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const classic = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  
+    const phrases = [
+      '**7LEVEL-RECORDS**',
+      '//ELEMENTX//',
+      '*SAVAGE-VERSES*',
+      '*OUTBREAK*',
+      '*INNOCULATION*',
+      '+THE-MAD-HATTER+',
+      '*GEN0CYD3=ORIJYN*',
+      '*ORANGE-MAN-GOOD*',
+      '+BUY-$TSLA+',
+      '!SAVAGE-DAFFY!',
+      '!WICKED-SHIT-RAP-BOYS!',
+      '^RUN-RABBIT-RUN^'
+    ];
+
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    const phraseData = Array(columns).fill(null).map(() => {
+      if (Math.random() < 0.22) {
+        return {
+          phrase: phrases[Math.floor(Math.random() * phrases.length)],
+          index: 0
+        };
+      }
+      return null;
+    });
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        let text;
+        let color = '#ff1a1a';
+
+        if (phraseData[i]) {
+          const p = phraseData[i];
+          text = p.phrase[p.index];
+         
+          color = '#ff8a8a';
+          ctx.shadowColor = '#ff1a1a';
+          ctx.shadowBlur = 10;
+
+          p.index++;
+          if (p.index >= p.phrase.length) {
+            p.index = 0;
+            if (Math.random() > 0.7) {
+              phraseData[i] = null;
+            }
+          }
+        } else {
+          text = classic[Math.floor(Math.random() * classic.length)];
+          ctx.shadowBlur = 0;
+        }
+
+        ctx.fillStyle = color;
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+          if (Math.random() < 0.22) {
+            phraseData[i] = {
+              phrase: phrases[Math.floor(Math.random() * phrases.length)],
+              index: 0
+            };
+          }
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 88);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>

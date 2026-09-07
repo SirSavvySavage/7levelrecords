@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nethervoid</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #0a0a0a;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Rippling background */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      background-image: url('nethervoid.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 0;
+      filter: url(#ripple);
+      animation: gentleMove 12s ease-in-out infinite;
+    }
+
+    @keyframes gentleMove {
+      0% { transform: scale(1.05) translate(0, 0); }
+      50% { transform: scale(1.12) translate(-1%, 1%); }
+      100% { transform: scale(1.05) translate(0, 0); }
+    }
+
+    .button-row {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 10;
+    }
+
+    .back-link, .void-link {
+      text-decoration: none;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      padding: 12px 28px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.45);
+      transition: all 0.3s ease;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      border: 1px solid;
+    }
+
+    /* Blue button - Turn Back */
+    .back-link {
+      color: #4da6ff;
+      border-color: rgba(77, 166, 255, 0.5);
+    }
+    .back-link:hover {
+      color: #7ec8ff;
+      border-color: #7ec8ff;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(77, 166, 255, 0.45);
+    }
+
+    /* Red button - Walk The Void */
+    .void-link {
+      color: #ff2a2a;
+      border-color: rgba(255, 42, 42, 0.5);
+    }
+    .void-link:hover {
+      color: #ff4d4d;
+      border-color: #ff1a1a;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(255, 26, 26, 0.45);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG filter for the ripple -->
+  <svg style="position: absolute; width: 0; height: 0;">
+    <filter id="ripple">
+      <feTurbulence type="turbulence" baseFrequency="0.012" numOctaves="3" seed="2" result="noise">
+        <animate attributeName="baseFrequency" values="0.012;0.018;0.012" dur="9s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <div class="button-row">
+    <a href="homepage.html" class="back-link">Turn Back</a>
+    <a href="darknethervoid.html" class="void-link">Walk The Void</a>
+  </div>
+
+</body>
+</html>
