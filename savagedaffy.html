@@ -36,85 +36,109 @@
       50% { opacity: 1; }
       100% { opacity: 0; }
     }
-    .center-text {
+    .layout {
       position: absolute;
       top: 70%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1;
+      left: 0;
+      width: 100%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 3%;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 32%;
+    }
+    .title {
+      font-size: 1.55rem;
+      letter-spacing: 2px;
+      margin: 0 0 0.45rem 0;
+      font-weight: 700;
+      white-space: nowrap;
       text-shadow: 0 3px 18px rgba(0,0,0,0.9);
     }
-    .center-text h1 {
-      font-size: 3.2rem;
-      letter-spacing: 4px;
-      margin: 0 0 0.6rem 0;
-      font-weight: 700;
-    }
-    .center-text .coming {
-      font-size: 1.6rem;
-      letter-spacing: 3px;
+    .line2 {
+      font-size: 1.12rem;
+      letter-spacing: 2px;
       opacity: 0.9;
-      margin-bottom: 1.2rem;
+      margin-bottom: 0.55rem;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.9);
     }
-    .center-text .tagline {
-      font-size: 1.15rem;
+    .line3 {
+      font-size: 0.8rem;
       letter-spacing: 1px;
       opacity: 0.85;
       font-style: italic;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.9);
     }
-    .button-row {
-      position: fixed;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 20px;
-      z-index: 10;
-    }
-    .back-link, .play-link {
-      color: white;
+    .back-link,
+    .play-link,
+    .hat-link {
       text-decoration: none;
-      font-size: 1.15rem;
-      letter-spacing: 1px;
-      padding: 12px 28px;
-      border-radius: 4px;
-      background: rgba(0, 0, 0, 0.45);
-      transition: all 0.3s ease;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      padding: 8px 20px;
+      border-radius: 999px;
       cursor: pointer;
-      border: 1px solid;
+      border: 2px solid;
+      transition: all 0.3s ease;
+      text-shadow:
+        0 0 6px rgba(0,0,0,1),
+        0 2px 10px rgba(0,0,0,1);
     }
     .back-link {
-      border-color: rgba(77, 166, 255, 0.5);
-      color: #4da6ff;
+      color: #ffffff;
+      border-color: #7ec8ff;
+      background: rgba(30, 90, 180, 0.75);
+      box-shadow: 0 0 16px rgba(77, 166, 255, 0.45);
     }
     .back-link:hover {
-      color: #7ec8ff;
-      border-color: #7ec8ff;
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 20px rgba(77, 166, 255, 0.45);
+      color: #ffffff;
+      border-color: #b3e0ff;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 24px rgba(126, 200, 255, 0.7);
     }
-    .play-link {
-      border-color: rgba(255, 42, 42, 0.5);
-      color: #ff2a2a;
+    .play-link,
+    .hat-link {
+      color: #ffffff;
+      border-color: #ff4d4d;
+      background: rgba(180, 20, 20, 0.75);
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.45);
     }
-    .play-link:hover {
-      color: #ff4d4d;
-      border-color: #ff1a1a;
-      background: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 20px rgba(255, 26, 26, 0.45);
+    .play-link:hover,
+    .hat-link:hover {
+      color: #ffffff;
+      border-color: #ff8080;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 24px rgba(255, 26, 26, 0.7);
     }
   </style>
 </head>
 <body>
-  <div class="center-text">
-    <h1>=SAVAGE VERSES=</h1>
-    <div class="coming">Album Coming Soon</div>
-    <div class="tagline">-Down The Rabbit Hole Once More-</div>
-  </div>
-  <div class="button-row">
-    <a href="homepage.html" class="back-link">Wake Up</a>
-    <a href="savageverses.html" class="play-link">Peek In The Mirror</a>
+  <div class="layout">
+    <div class="col">
+      <a href="homepage.html" class="back-link">Wake Up</a>
+    </div>
+    <div class="col">
+      <div class="title">=SAVAGE VERSES=</div>
+      <div class="line2">Album Coming Soon</div>
+      <div class="line3">-Down The Rabbit Hole Once More-</div>
+      <a href="savageverses.html" class="play-link">Peek In The Mirror</a>
+    </div>
+    <div class="col">
+      <div class="title">=THE MAD HATTER=</div>
+      <div class="line2">11th Anniversary Re-Release</div>
+      <div class="line3">-Remixed and Remastered-</div>
+      <a href="themadhatter.html" class="hat-link">Back To Sleep</a>
+    </div>
   </div>
 </body>
 </html>

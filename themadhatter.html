@@ -3,33 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Journey Awaits</title>
+  <title>The Mad Hatter</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
       background-color: #0a0a0a;
-      background-image: url('journeyawaits.jpg');
-      background-size: contain;
+      background-image: url('mhbackground.jpg');
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       color: white;
       font-family: system-ui, -apple-system, sans-serif;
-      text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .back-link,
-    .start-link {
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 0;
+      animation: darkPulse 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes darkPulse {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .savvy-link,
+    .deeper-btn {
       position: fixed;
       bottom: 40px;
       z-index: 10;
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      padding: 14px 32px;
-      border-radius: 999px;
       text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      padding: 8px 20px;
+      border-radius: 999px;
       cursor: pointer;
       border: 2px solid;
       transition: all 0.3s ease;
@@ -37,38 +53,32 @@
         0 0 6px rgba(0,0,0,1),
         0 2px 10px rgba(0,0,0,1);
     }
-    .back-link {
-      left: 25%;
-      transform: translateX(-50%) scale(0.6);
-      transform-origin: center bottom;
+    .savvy-link {
+      left: 4%;
       color: #ffffff;
       border-color: #7ec8ff;
       background: rgba(30, 90, 180, 0.75);
       box-shadow: 0 0 16px rgba(77, 166, 255, 0.45);
     }
-    .back-link:hover {
-      color: #ffffff;
+    .savvy-link:hover {
       border-color: #b3e0ff;
       background: rgba(255, 255, 255, 0.55);
       box-shadow: 0 0 24px rgba(126, 200, 255, 0.7);
     }
-    .start-link {
-      left: 75%;
-      transform: translateX(-50%) scale(0.6);
-      transform-origin: center bottom;
+    .deeper-btn {
+      right: 4%;
       color: #ffffff;
       border-color: #ff4d4d;
       background: rgba(180, 20, 20, 0.75);
       box-shadow: 0 0 16px rgba(255, 42, 42, 0.45);
     }
-    .start-link:hover {
-      color: #ffffff;
+    .deeper-btn:hover {
       border-color: #ff8080;
       background: rgba(255, 255, 255, 0.55);
       box-shadow: 0 0 24px rgba(255, 26, 26, 0.7);
     }
-    .start-link.denied,
-    .start-link.denied:hover {
+    .deeper-btn.denied,
+    .deeper-btn.denied:hover {
       color: #fff4c2;
       border-color: #e0c04a;
       background: rgba(160, 120, 20, 0.8);
@@ -77,13 +87,13 @@
   </style>
 </head>
 <body>
-  <a href="homepage.html" class="back-link">I'm Not Ready</a>
-  <button class="start-link" id="startBtn">Start Journey</button>
+  <a href="savagedaffy.html" class="savvy-link">Savvy Savage</a>
+  <button class="deeper-btn" id="deeperBtn">Go Deeper</button>
   <script>
-    const startBtn = document.getElementById('startBtn');
-    startBtn.addEventListener('click', () => {
-      startBtn.textContent = "Access Denied";
-      startBtn.classList.add('denied');
+    const deeperBtn = document.getElementById('deeperBtn');
+    deeperBtn.addEventListener('click', () => {
+      deeperBtn.textContent = "Rabbit Hole Denied";
+      deeperBtn.classList.add('denied');
     });
   </script>
 </body>
