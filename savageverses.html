@@ -35,12 +35,22 @@
       50% { opacity: 1; }
       100% { opacity: 0; }
     }
-    .line {
-      position: absolute;
-      bottom: 130px;
+    .controls {
+      position: fixed;
+      bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
-      z-index: 1;
+      display: flex;
+      gap: 40px;
+      z-index: 10;
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .label {
       font-size: 1.15rem;
       letter-spacing: 1px;
       font-style: italic;
@@ -49,9 +59,6 @@
       text-align: center;
     }
     .back-link, .play-link {
-      position: fixed;
-      bottom: 40px;
-      z-index: 10;
       text-decoration: none;
       font-size: 1.15rem;
       letter-spacing: 1px;
@@ -64,7 +71,6 @@
       border: 1px solid;
     }
     .back-link {
-      left: 18%;
       border-color: rgba(77, 166, 255, 0.5);
       color: #4da6ff;
     }
@@ -75,7 +81,6 @@
       box-shadow: 0 0 20px rgba(77, 166, 255, 0.45);
     }
     .play-link {
-      right: 18%;
       border-color: rgba(255, 42, 42, 0.5);
       color: #ff2a2a;
     }
@@ -88,9 +93,16 @@
   </style>
 </head>
 <body>
-  <div class="line">-Step To The Other Side-</div>
-  <a href="savagedaffy.html" class="back-link">-Turn Around-</a>
-  <button class="play-link" id="playSavage">Savage Verses</button>
+  <div class="controls">
+    <div class="col">
+      <div class="label">Turn Around</div>
+      <a href="savagedaffy.html" class="back-link">Wake Up</a>
+    </div>
+    <div class="col">
+      <div class="label">-Step To The Other Side-</div>
+      <button class="play-link" id="playSavage">Savage Verses</button>
+    </div>
+  </div>
   <audio id="savageTrack" src="Savage Verses.mp3" preload="auto"></audio>
   <script>
     const playBtn = document.getElementById('playSavage');
@@ -98,10 +110,8 @@
     playBtn.addEventListener('click', () => {
       if (audio.paused) {
         audio.play();
-        playBtn.textContent = "Savage Verses";
       } else {
         audio.pause();
-        playBtn.textContent = "Savage Verses";
       }
     });
   </script>
