@@ -63,14 +63,26 @@
       background: rgba(255, 255, 255, 0.5);
       box-shadow: 0 0 20px rgba(255, 26, 26, 0.45);
     }
+    .green-pill {
+      color: #00ff41;
+      border-color: rgba(0, 255, 65, 0.5);
+      background: rgba(0, 255, 65, 0.5);
+    }
+    .green-pill:hover {
+      color: #33ff66;
+      border-color: #00ff41;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.45);
+    }
   </style>
 </head>
 <body>
   <canvas id="matrix"></canvas>
 
   <div class="button-row">
-    <a href="#" class="pill blue-pill">Blue Pill</a>
-    <a href="homepage.html" class="pill red-pill">Red Pill</a>
+    <a href="#" class="pill blue-pill" id="bluePill">Blue Pill</a>
+    <a href="#" class="pill green-pill" id="greenPill">Green Pill</a>
+    <a href="homepage.html" class="pill red-pill" id="redPill">Red Pill</a>
   </div>
 
   <script>
@@ -89,17 +101,40 @@
       '*INNOCULATION*',
       '+THE-MAD-HATTER+',
       '*GEN0CYD3=ORIJYN*',
-      '*ORANGE-MAN-GOOD*',
-      '+BUY-$TSLA+',
+      '*THE-HALLOW-THE-HALLOW*',
+      '+SAVAGE-DAFFY-GEN0CYD3+',
       '!SAVAGE-DAFFY!',
       '!WICKED-SHIT-RAP-BOYS!',
       '^RUN-RABBIT-RUN^'
     ];
 
+    let isPurple = false;
+    let isPaused = false;
+    const bluePill = document.getElementById('bluePill');
+    const greenPill = document.getElementById('greenPill');
+    const redPill = document.getElementById('redPill');
+
+    bluePill.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isPaused) return;
+      isPurple = true;
+      bluePill.textContent = 'stay in Matrix';
+      bluePill.style.pointerEvents = 'none';
+      bluePill.style.opacity = '0.7';
+    });
+
+    greenPill.addEventListener('click', (e) => {
+      e.preventDefault();
+      isPaused = !isPaused;
+      greenPill.textContent = isPaused ? 'Re-Boot' : 'Green Pill';
+    });
+
+    // Red pill navigates normally (no special animation)
+    // (default link behavior)
+
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(1);
-
     const phraseData = Array(columns).fill(null).map(() => {
       if (Math.random() < 0.22) {
         return {
@@ -111,20 +146,22 @@
     });
 
     function draw() {
+      if (isPaused) return; // freeze the rain
+
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.font = fontSize + 'px monospace';
 
       for (let i = 0; i < drops.length; i++) {
         let text;
-        let color = '#ff1a1a';
+        let color = isPurple ? '#a855f7' : '#ff1a1a';
 
         if (phraseData[i]) {
           const p = phraseData[i];
           text = p.phrase[p.index];
          
-          color = '#ff8a8a';
-          ctx.shadowColor = '#ff1a1a';
+          color = isPurple ? '#c084fc' : '#ff8a8a';
+          ctx.shadowColor = isPurple ? '#a855f7' : '#ff1a1a';
           ctx.shadowBlur = 10;
 
           p.index++;

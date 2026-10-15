@@ -35,31 +35,60 @@
       50% { opacity: 1; }
       100% { opacity: 0; }
     }
-    .controls {
+    .top-center {
+      position: fixed;
+      top: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 10;
+    }
+    .step-label {
+      color: #ffffff;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      font-style: italic;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+    }
+    .play-link {
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 2px solid #ff4d4d;
+      color: #ffffff;
+      background: rgba(180, 20, 20, 0.75);
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.45);
+      transition: all 0.3s ease;
+      text-shadow:
+        0 0 6px rgba(0,0,0,1),
+        0 2px 10px rgba(0,0,0,1);
+    }
+    .play-link:hover {
+      color: #ffffff;
+      border-color: #ff8080;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 24px rgba(255, 26, 26, 0.7);
+    }
+    .bottom-controls {
       position: fixed;
       bottom: 40px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 40px;
+      gap: 20px;
+      align-items: center;
       z-index: 10;
     }
-    .col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-    .label {
-      font-size: 1.15rem;
-      letter-spacing: 1px;
-      font-style: italic;
-      opacity: 0.9;
-      text-shadow: 0 3px 18px rgba(0,0,0,0.9);
-      text-align: center;
-    }
     .back-link,
-    .play-link {
+    .deeper-btn,
+    .merch-btn {
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: 700;
@@ -80,35 +109,50 @@
       box-shadow: 0 0 16px rgba(77, 166, 255, 0.45);
     }
     .back-link:hover {
-      color: #ffffff;
       border-color: #b3e0ff;
       background: rgba(255, 255, 255, 0.55);
       box-shadow: 0 0 24px rgba(126, 200, 255, 0.7);
     }
-    .play-link {
+    .deeper-btn {
       color: #ffffff;
       border-color: #ff4d4d;
       background: rgba(180, 20, 20, 0.75);
       box-shadow: 0 0 16px rgba(255, 42, 42, 0.45);
     }
-    .play-link:hover {
-      color: #ffffff;
+    .deeper-btn:hover {
       border-color: #ff8080;
       background: rgba(255, 255, 255, 0.55);
       box-shadow: 0 0 24px rgba(255, 26, 26, 0.7);
     }
+    .deeper-btn.denied,
+    .deeper-btn.denied:hover {
+      color: #fff4c2;
+      border-color: #e0c04a;
+      background: rgba(160, 120, 20, 0.8);
+      box-shadow: 0 0 18px rgba(201, 162, 39, 0.6);
+    }
+    .merch-btn {
+      color: #ffffff;
+      border-color: #39ff14;
+      background: rgba(20, 120, 20, 0.8);
+      box-shadow: 0 0 16px rgba(57, 255, 20, 0.5);
+    }
+    .merch-btn:hover {
+      border-color: #7fff7f;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 24px rgba(57, 255, 20, 0.8);
+    }
   </style>
 </head>
 <body>
-  <div class="controls">
-    <div class="col">
-      <div class="label">Walk Away</div>
-      <a href="savagedaffy.html" class="back-link">Wake Up</a>
-    </div>
-    <div class="col">
-      <div class="label">-Step To The Other Side-</div>
-      <button class="play-link" id="playSavage">Reflextion</button>
-    </div>
+  <div class="top-center">
+    <div class="step-label">Step To The Other Side</div>
+    <button class="play-link" id="playSavage">Reflextion</button>
+  </div>
+  <div class="bottom-controls">
+    <a href="savagedaffy.html" class="back-link">Wake Up</a>
+    <a href="https://7levelrecordsmerch.bigcartel.com/" class="merch-btn">$$$</a>
+    <button class="deeper-btn" id="deeperBtn">Go Deeper</button>
   </div>
   <audio id="savageTrack" src="Reflextion.mp3" preload="auto"></audio>
   <script>
@@ -120,6 +164,11 @@
       } else {
         audio.pause();
       }
+    });
+    const deeperBtn = document.getElementById('deeperBtn');
+    deeperBtn.addEventListener('click', () => {
+      deeperBtn.textContent = "Rabbit Hole Denied";
+      deeperBtn.classList.add('denied');
     });
   </script>
 </body>

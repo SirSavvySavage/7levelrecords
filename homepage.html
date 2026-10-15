@@ -96,59 +96,54 @@
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.5);
     }
-
-    /* Secret button – right side (Nexus) */
+    /* Secret button – right side (Nexus) – moved over the bottom button (now horizontal) */
     .secret-btn {
       position: fixed;
-      right: 25%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 240px;
-      background-color: #ff1a1a;
-      opacity: 0.3;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 14px;
+      background-color: #000;
+      opacity: 1;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       z-index: 9999;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
       display: block;
     }
     .secret-btn:hover {
-      width: 22px;
-      opacity: 1;
-      background-color: #00ff41;
-      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+      height: 20px;
+      background-color: #800080;
+      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
     }
-
-    /* Secret button – left side (SavageDaffy) */
+    /* Secret button – left side (SavageDaffy) – moved under the top button (now horizontal) */
     .secret-btn-left {
       position: fixed;
-      left: 25%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 240px;
-      background-color: #ff1a1a;
-      opacity: 0.3;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 14px;
+      background-color: #000;
+      opacity: 1;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       z-index: 9999;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
       display: block;
     }
     .secret-btn-left:hover {
-      width: 22px;
-      opacity: 1;
-      background-color: #00ff41;
-      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+      height: 20px;
+      background-color: #800080;
+      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
     }
-
     /* Secret button – bottom (Nethervoid) */
     .secret-btn-bottom {
       position: fixed;
@@ -157,24 +152,22 @@
       transform: translateX(-50%);
       width: 240px;
       height: 14px;
-      background-color: #ff1a1a;
-      opacity: 0.3;
+      background-color: #000;
+      opacity: 1;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       z-index: 9999;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
       display: block;
     }
     .secret-btn-bottom:hover {
       height: 20px;
-      opacity: 1;
-      background-color: #00ff41;
-      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+      background-color: #800080;
+      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
     }
-
     /* Secret button – top (Journey Awaits) */
     .secret-btn-top {
       position: fixed;
@@ -183,43 +176,35 @@
       transform: translateX(-50%);
       width: 240px;
       height: 14px;
-      background-color: #ff1a1a;
-      opacity: 0.3;
+      background-color: #000;
+      opacity: 1;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       z-index: 9999;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 26, 26, 0.55);
+      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
       display: block;
     }
     .secret-btn-top:hover {
       height: 20px;
-      opacity: 1;
-      background-color: #00ff41;
-      box-shadow: 0 0 20px #00ff41, 0 0 45px rgba(0, 255, 65, 0.8);
+      background-color: #800080;
+      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
     }
   </style>
 </head>
 <body>
-  <h1>YOU HAVE BEEN CHOSEN FOR</h1>
-
   <a href="matrix.html" class="matrix-link" id="calibrateText">reA1ity R3cAlIbrAt10n</a>
-
   <div class="play-section">
-    <p>Click here to be ENVENOMATED while you wait</p>
     <button id="playBtn">(don't click me)</button>
   </div>
-
   <!-- Secret buttons -->
   <a href="nexus.html" class="secret-btn">&nbsp;</a>
   <a href="savagedaffy.html" class="secret-btn-left">&nbsp;</a>
   <a href="nethervoid.html" class="secret-btn-bottom">&nbsp;</a>
-  <a href="journeyawaits.html" class="secret-btn-top">&nbsp;</a>
-
+  <a href="https://7levelrecordsmerch.bigcartel.com/" class="secret-btn-top">&nbsp;</a>
   <audio id="venomTrack" src="VENOM.mp3" preload="auto"></audio>
-
   <script>
     // Play button
     const btn = document.getElementById('playBtn');
@@ -233,18 +218,15 @@
         btn.textContent = "(don't click me)";
       }
     });
-
     // Calibrating text – each character switches independently
     const versions = [
       'reA1ity R3cAlIbrAt10n',
       'REalITY reCaLiBRaTioN',
       'r34L!t7 rEk^718r^t!On'
     ];
-
     const el = document.getElementById('calibrateText');
     const length = versions[0].length;
     const charState = new Array(length).fill(0);
-
     function updateText() {
       let result = '';
       for (let i = 0; i < length; i++) {
@@ -252,7 +234,6 @@
       }
       el.textContent = result;
     }
-
     for (let i = 0; i < length; i++) {
       const interval = 2800 + Math.random() * 5000; // slow random intervals
       setInterval(() => {
@@ -260,7 +241,6 @@
         updateText();
       }, interval);
     }
-
     updateText();
   </script>
 </body>
