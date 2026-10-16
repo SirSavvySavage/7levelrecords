@@ -55,26 +55,58 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
-      color: white;
+      color: #ff2a2a;
       text-decoration: none;
-      font-size: 1.15rem;
-      letter-spacing: 1px;
-      padding: 12px 28px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      padding: 16px 36px;
+      border: 1px solid rgba(255, 42, 42, 0.6);
       border-radius: 4px;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.4);
       transition: all 0.3s ease;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      text-shadow: 0 0 12px rgba(255, 26, 26, 0.6);
+      font-family: monospace;
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.4);
     }
     .back-link:hover {
-      color: #00ff41;
-      border-color: #00ff41;
-      background: rgba(0, 0, 0, 0.5);
-      box-shadow: 0 0 20px rgba(0, 255, 65, 0.45);
+      color: #ff4d4d;
+      border-color: #ff1a1a;
+      background: rgba(0, 0, 0, 0.55);
+      box-shadow: 0 0 24px rgba(255, 26, 26, 0.7), 0 0 48px rgba(255, 26, 26, 0.4);
+      text-shadow: 0 0 16px rgba(255, 26, 26, 0.9);
     }
   </style>
 </head>
 <body>
-  <a href="homepage.html" class="back-link">back to my reality</a>
+  <a href="homepage.html" class="back-link" id="enterText">ENTER</a>
+
+  <script>
+    const versions = [
+      'ENTER WITH CAUTION',
+      '3^135 W!1= k4V5!0n',
+      'enter with caution'
+    ];
+    const el = document.getElementById('enterText');
+    const length = versions[0].length;
+    const charState = new Array(length).fill(0);
+
+    function updateText() {
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += versions[charState[i]][i];
+      }
+      el.textContent = result;
+    }
+
+    for (let i = 0; i < length; i++) {
+      const interval = 2800 + Math.random() * 5000;
+      setInterval(() => {
+        charState[i] = (charState[i] + 1) % versions.length;
+        updateText();
+      }, interval);
+    }
+
+    updateText();
+  </script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mad Hatter — Go Deeper</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #050505;
+      background-image: url('mhgodeeper.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 0;
+      animation: deeperPulse 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes deeperPulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 0.95; }
+      100% { opacity: 0.4; }
+    }
+    .bottom-controls {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+    .return-btn {
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      padding: 8px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(77, 166, 255, 0.7), 0 0 32px rgba(77, 166, 255, 0.4);
+      transition: all 0.3s ease;
+      text-shadow:
+        0 0 6px rgba(0,0,0,1),
+        0 2px 10px rgba(0,0,0,1);
+    }
+    .return-btn:hover {
+      box-shadow: 0 0 24px rgba(126, 200, 255, 0.9), 0 0 40px rgba(126, 200, 255, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="bottom-controls">
+    <a href="themadhatter.html" class="return-btn">Run Rabbit Run</a>
+  </div>
+</body>
+</html>

@@ -55,7 +55,10 @@
       paint-order: stroke fill;
       text-shadow: 0 2px 10px rgba(0,0,0,0.9);
     }
-    .dream-btn {
+    .dream-btn,
+    .savvy-link,
+    .deeper-btn,
+    .merch-btn {
       text-decoration: none;
       font-size: 0.8rem;
       font-weight: 700;
@@ -63,18 +66,21 @@
       padding: 8px 20px;
       border-radius: 999px;
       cursor: pointer;
-      border: 2px solid #ff2a2a;
+      border: 2px solid transparent;
+      background: #000000;
       color: #ffffff;
-      background: rgba(180, 20, 20, 0.75);
-      box-shadow: 0 0 16px rgba(255, 42, 42, 0.45);
+      transition: all 0.3s ease;
+      text-shadow:
+        0 0 6px rgba(0,0,0,1),
+        0 2px 10px rgba(0,0,0,1);
+    }
+    .dream-btn {
       -webkit-text-stroke: 0.6px #ff2a2a;
       paint-order: stroke fill;
-      text-shadow: 0 0 6px rgba(0,0,0,1);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.7), 0 0 32px rgba(255, 42, 42, 0.4);
     }
     .dream-btn:hover {
-      background: rgba(255, 255, 255, 0.55);
-      box-shadow: 0 0 24px rgba(255, 26, 26, 0.7);
+      box-shadow: 0 0 24px rgba(255, 80, 80, 0.9), 0 0 40px rgba(255, 80, 80, 0.5);
     }
     .bottom-controls {
       position: fixed;
@@ -86,61 +92,27 @@
       align-items: center;
       z-index: 10;
     }
-    .savvy-link,
-    .deeper-btn,
-    .merch-btn {
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.7px;
-      padding: 8px 20px;
-      border-radius: 999px;
-      cursor: pointer;
-      border: 2px solid;
-      transition: all 0.3s ease;
-      text-shadow:
-        0 0 6px rgba(0,0,0,1),
-        0 2px 10px rgba(0,0,0,1);
-    }
     .savvy-link {
-      color: #ffffff;
-      border-color: #7ec8ff;
-      background: rgba(30, 90, 180, 0.75);
-      box-shadow: 0 0 16px rgba(77, 166, 255, 0.45);
+      box-shadow: 0 0 16px rgba(77, 166, 255, 0.7), 0 0 32px rgba(77, 166, 255, 0.4);
     }
     .savvy-link:hover {
-      border-color: #b3e0ff;
-      background: rgba(255, 255, 255, 0.55);
-      box-shadow: 0 0 24px rgba(126, 200, 255, 0.7);
+      box-shadow: 0 0 24px rgba(126, 200, 255, 0.9), 0 0 40px rgba(126, 200, 255, 0.5);
     }
     .deeper-btn {
-      color: #ffffff;
-      border-color: #ff4d4d;
-      background: rgba(180, 20, 20, 0.75);
-      box-shadow: 0 0 16px rgba(255, 42, 42, 0.45);
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.7), 0 0 32px rgba(255, 42, 42, 0.4);
     }
     .deeper-btn:hover {
-      border-color: #ff8080;
-      background: rgba(255, 255, 255, 0.55);
-      box-shadow: 0 0 24px rgba(255, 26, 26, 0.7);
+      box-shadow: 0 0 24px rgba(255, 80, 80, 0.9), 0 0 40px rgba(255, 80, 80, 0.5);
     }
     .deeper-btn.denied,
     .deeper-btn.denied:hover {
-      color: #fff4c2;
-      border-color: #e0c04a;
-      background: rgba(160, 120, 20, 0.8);
-      box-shadow: 0 0 18px rgba(201, 162, 39, 0.6);
+      box-shadow: 0 0 18px rgba(255, 220, 50, 0.8), 0 0 32px rgba(255, 220, 50, 0.5);
     }
     .merch-btn {
-      color: #ffffff;
-      border-color: #39ff14;
-      background: rgba(20, 120, 20, 0.8);
-      box-shadow: 0 0 16px rgba(57, 255, 20, 0.5);
+      box-shadow: 0 0 16px rgba(57, 255, 20, 0.7), 0 0 32px rgba(57, 255, 20, 0.4);
     }
     .merch-btn:hover {
-      border-color: #7fff7f;
-      background: rgba(255, 255, 255, 0.55);
-      box-shadow: 0 0 24px rgba(57, 255, 20, 0.8);
+      box-shadow: 0 0 24px rgba(100, 255, 60, 0.9), 0 0 40px rgba(100, 255, 60, 0.5);
     }
   </style>
 </head>
@@ -152,7 +124,7 @@
   <div class="bottom-controls">
     <a href="savagedaffy.html" class="savvy-link">Wake Up</a>
     <a href="https://7levelrecordsmerch.bigcartel.com/" class="merch-btn">$$$</a>
-    <button class="deeper-btn" id="deeperBtn">Go Deeper</button>
+    <a href="mhgodeeper.html" class="deeper-btn" id="deeperBtn">Go Deeper</a>
   </div>
   <audio id="briarTrack" src="Briar Patch.mp3" preload="auto"></audio>
   <script>
@@ -164,11 +136,6 @@
       } else {
         briar.pause();
       }
-    });
-    const deeperBtn = document.getElementById('deeperBtn');
-    deeperBtn.addEventListener('click', () => {
-      deeperBtn.textContent = "Rabbit Hole Denied";
-      deeperBtn.classList.add('denied');
     });
   </script>
 </body>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savage Verses — Go Deeper</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #050505;
+      background-image: url('svgodeeper.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 0;
+      animation: deeperPulse 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes deeperPulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 0.95; }
+      100% { opacity: 0.4; }
+    }
+    .bottom-controls {
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      z-index: 10;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .surface-btn,
+    .deeper-btn {
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: #000000;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      text-shadow:
+        0 0 6px rgba(0,0,0,1),
+        0 2px 10px rgba(0,0,0,1);
+    }
+    .surface-btn {
+      box-shadow: 0 0 16px rgba(77, 166, 255, 0.7), 0 0 32px rgba(77, 166, 255, 0.4);
+    }
+    .surface-btn:hover {
+      box-shadow: 0 0 24px rgba(126, 200, 255, 0.9), 0 0 40px rgba(126, 200, 255, 0.5);
+    }
+    .deeper-btn {
+      box-shadow: 0 0 16px rgba(192, 132, 252, 0.7), 0 0 32px rgba(192, 132, 252, 0.4);
+    }
+    .deeper-btn:hover {
+      box-shadow: 0 0 24px rgba(216, 180, 254, 0.9), 0 0 40px rgba(216, 180, 254, 0.5);
+    }
+    .deeper-btn.no-reflextion {
+      box-shadow: 0 0 16px rgba(255, 220, 50, 0.8), 0 0 32px rgba(255, 220, 50, 0.5);
+    }
+    .deeper-btn.no-reflextion:hover {
+      box-shadow: 0 0 24px rgba(255, 230, 80, 0.95), 0 0 40px rgba(255, 230, 80, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="bottom-controls">
+    <a href="savageverses.html" class="surface-btn">Surface</a>
+    <a href="#" class="deeper-btn" id="evenDeeper">Even Deeper</a>
+  </div>
+
+  <script>
+    const evenDeeper = document.getElementById('evenDeeper');
+
+    evenDeeper.addEventListener('click', (e) => {
+      e.preventDefault();
+      evenDeeper.textContent = 'No Reflextion';
+      evenDeeper.classList.add('no-reflextion');
+    });
+  </script>
+</body>
+</html>
