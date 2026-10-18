@@ -29,50 +29,37 @@
       z-index: 10;
     }
 
-       .pill {
+    .pill {
       font-family: monospace;
       font-size: 1.15rem;
       letter-spacing: 1px;
       padding: 12px 28px;
       border-radius: 999px;
       transition: all 0.3s ease;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      text-shadow: 0 0 6px rgba(0,0,0,1), 0 2px 10px rgba(0,0,0,1);
       text-decoration: none;
       cursor: pointer;
-      border: 1px solid;
+      border: 2px solid transparent;
+      background: #000000;
+      color: #ffffff;
     }
     .blue-pill {
-      color: #4da6ff;
-      border-color: rgba(77, 166, 255, 0.5);
-      background: rgba(77, 166, 255, 0.5);
+      box-shadow: 0 0 16px rgba(77, 166, 255, 0.7), 0 0 32px rgba(77, 166, 255, 0.4);
     }
     .blue-pill:hover {
-      color: #7ec8ff;
-      border-color: #7ec8ff;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 20px rgba(77, 166, 255, 0.45);
+      box-shadow: 0 0 24px rgba(126, 200, 255, 0.9), 0 0 40px rgba(126, 200, 255, 0.5);
     }
     .red-pill {
-      color: #ff2a2a;
-      border-color: rgba(255, 42, 42, 0.5);
-      background: rgba(255, 42, 42, 0.5);
+      box-shadow: 0 0 16px rgba(255, 42, 42, 0.7), 0 0 32px rgba(255, 42, 42, 0.4);
     }
     .red-pill:hover {
-      color: #ff4d4d;
-      border-color: #ff1a1a;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 20px rgba(255, 26, 26, 0.45);
+      box-shadow: 0 0 24px rgba(255, 80, 80, 0.9), 0 0 40px rgba(255, 80, 80, 0.5);
     }
     .green-pill {
-      color: #00ff41;
-      border-color: rgba(0, 255, 65, 0.5);
-      background: rgba(0, 255, 65, 0.5);
+      box-shadow: 0 0 16px rgba(57, 255, 20, 0.7), 0 0 32px rgba(57, 255, 20, 0.4);
     }
     .green-pill:hover {
-      color: #33ff66;
-      border-color: #00ff41;
-      background: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 0 20px rgba(0, 255, 65, 0.45);
+      box-shadow: 0 0 24px rgba(100, 255, 60, 0.9), 0 0 40px rgba(100, 255, 60, 0.5);
     }
   </style>
 </head>
@@ -108,19 +95,20 @@
       '^RUN-RABBIT-RUN^'
     ];
 
-    let isPurple = false;
+    // colorMode: 0 = original red, 1 = purple, 2 = yellow, 3 = multicolored
+    let colorMode = 0;
     let isPaused = false;
     const bluePill = document.getElementById('bluePill');
     const greenPill = document.getElementById('greenPill');
     const redPill = document.getElementById('redPill');
 
+    const modeLabels = ['Blue Pill', 'Stay In Matrix', 'Stay In Matrix', 'Stay In Matrix'];
+
     bluePill.addEventListener('click', (e) => {
       e.preventDefault();
       if (isPaused) return;
-      isPurple = true;
-      bluePill.textContent = 'stay in Matrix';
-      bluePill.style.pointerEvents = 'none';
-      bluePill.style.opacity = '0.7';
+      colorMode = (colorMode + 1) % 4;
+      bluePill.textContent = modeLabels[colorMode];
     });
 
     greenPill.addEventListener('click', (e) => {
@@ -128,9 +116,6 @@
       isPaused = !isPaused;
       greenPill.textContent = isPaused ? 'Re-Boot' : 'Green Pill';
     });
-
-    // Red pill navigates normally (no special animation)
-    // (default link behavior)
 
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
@@ -145,8 +130,29 @@
       return null;
     });
 
+    function getColor(isPhrase) {
+      if (colorMode === 0) {
+        return isPhrase ? '#ff8a8a' : '#ff1a1a';
+      } else if (colorMode === 1) {
+        return isPhrase ? '#c084fc' : '#a855f7';
+      } else if (colorMode === 2) {
+        return isPhrase ? '#fde047' : '#facc15';
+      } else {
+        // multicolored
+        const colors = ['#ff1a1a', '#a855f7', '#facc15', '#22d3ee', '#4ade80', '#f472b6'];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+    }
+
+    function getShadowColor() {
+      if (colorMode === 0) return '#ff1a1a';
+      if (colorMode === 1) return '#a855f7';
+      if (colorMode === 2) return '#facc15';
+      return '#ffffff';
+    }
+
     function draw() {
-      if (isPaused) return; // freeze the rain
+      if (isPaused) return;
 
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -154,14 +160,13 @@
 
       for (let i = 0; i < drops.length; i++) {
         let text;
-        let color = isPurple ? '#a855f7' : '#ff1a1a';
+        let isPhrase = false;
 
         if (phraseData[i]) {
           const p = phraseData[i];
           text = p.phrase[p.index];
-         
-          color = isPurple ? '#c084fc' : '#ff8a8a';
-          ctx.shadowColor = isPurple ? '#a855f7' : '#ff1a1a';
+          isPhrase = true;
+          ctx.shadowColor = getShadowColor();
           ctx.shadowBlur = 10;
 
           p.index++;
@@ -176,7 +181,7 @@
           ctx.shadowBlur = 0;
         }
 
-        ctx.fillStyle = color;
+        ctx.fillStyle = getColor(isPhrase);
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
