@@ -96,100 +96,47 @@
       background: rgba(255, 255, 255, 0.12);
       border-color: rgba(255, 255, 255, 0.5);
     }
-    /* Secret button – top (Element X) */
-    .secret-btn-top {
-      position: fixed;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 240px;
-      height: 14px;
-      background-color: #000;
-      opacity: 1;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 9999;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
-      display: block;
-    }
-    .secret-btn-top:hover {
-      height: 20px;
-      background-color: #800080;
-      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
-    }
-    /* Secret button – second from top (SavageDaffy) */
-    .secret-btn-left {
-      position: fixed;
-      top: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 240px;
-      height: 14px;
-      background-color: #000;
-      opacity: 1;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 9999;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
-      display: block;
-    }
-    .secret-btn-left:hover {
-      height: 20px;
-      background-color: #800080;
-      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
-    }
-    /* Secret button – second from bottom (Merch) */
-    .secret-btn {
-      position: fixed;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 240px;
-      height: 14px;
-      background-color: #000;
-      opacity: 1;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      z-index: 9999;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
-      display: block;
-    }
-    .secret-btn:hover {
-      height: 20px;
-      background-color: #800080;
-      box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
-    }
-    /* Secret button – bottom (Nethervoid) */
+    /* Secret buttons – semi-transparent so background shows, solid black text */
+    .secret-btn-top,
+    .secret-btn-left,
+    .secret-btn,
     .secret-btn-bottom {
       position: fixed;
-      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       width: 240px;
-      height: 14px;
-      background-color: #000;
-      opacity: 1;
+      height: 24px;
+      background-color: #000000;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       z-index: 9999;
+      color: #111111;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-shadow:
+        0 0 4px rgba(80, 80, 80, 0.6),
+        1px 1px 0 rgba(40, 40, 40, 0.5),
+        -1px -1px 0 rgba(40, 40, 40, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       text-decoration: none;
       transition: all 0.3s ease;
       box-shadow: 0 0 14px rgba(255, 100, 100, 0.6);
-      display: block;
     }
+    .secret-btn-top { top: 16px; }
+    .secret-btn-left { top: 56px; }
+    .secret-btn { bottom: 56px; }
+    .secret-btn-bottom { bottom: 16px; }
+    .secret-btn-top:hover,
+    .secret-btn-left:hover,
+    .secret-btn:hover,
     .secret-btn-bottom:hover {
-      height: 20px;
-      background-color: #800080;
+      height: 34px;
+      background-color: rgba(128, 0, 128, 0.65);
       box-shadow: 0 0 20px #800080, 0 0 45px rgba(128, 0, 128, 0.8);
     }
   </style>
@@ -200,13 +147,12 @@
     <button id="playBtn">(don't click me)</button>
   </div>
   <!-- Secret buttons -->
-  <a href="elementx.html" class="secret-btn-top">&nbsp;</a>
-  <a href="savagedaffy.html" class="secret-btn-left">&nbsp;</a>
-  <a href="https://7levelrecordsmerch.bigcartel.com/" class="secret-btn">&nbsp;</a>
-  <a href="nethervoid.html" class="secret-btn-bottom">&nbsp;</a>
+  <a href="elementx.html" class="secret-btn-top">ELEMENT X</a>
+  <a href="savagedaffy.html" class="secret-btn-left">SAVAGE DAFFY</a>
+  <a href="https://7levelrecordsmerch.bigcartel.com/" class="secret-btn">RELICS</a>
+  <a href="nethervoid.html" class="secret-btn-bottom">OLD ROADS</a>
   <audio id="venomTrack" src="VENOM.mp3" preload="auto"></audio>
   <script>
-    // Play button
     const btn = document.getElementById('playBtn');
     const audio = document.getElementById('venomTrack');
     btn.addEventListener('click', () => {
@@ -218,7 +164,6 @@
         btn.textContent = "(don't click me)";
       }
     });
-    // Calibrating text – each character switches independently
     const versions = [
       'reA1ity R3cAlIbrAt10n',
       'REalITY reCaLiBRaTioN',
@@ -235,7 +180,7 @@
       el.textContent = result;
     }
     for (let i = 0; i < length; i++) {
-      const interval = 2800 + Math.random() * 5000; // slow random intervals
+      const interval = 2800 + Math.random() * 5000;
       setInterval(() => {
         charState[i] = (charState[i] + 1) % versions.length;
         updateText();
