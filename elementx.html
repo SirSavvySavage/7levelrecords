@@ -35,37 +35,6 @@
       50% { opacity: 1; }
       100% { opacity: 0; }
     }
-    .top-center {
-      position: fixed;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      z-index: 10;
-    }
-    .play-link {
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.7px;
-      padding: 8px 20px;
-      border-radius: 999px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      background: #000000;
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(255, 42, 42, 0.7), 0 0 32px rgba(255, 42, 42, 0.4);
-      transition: all 0.3s ease;
-      text-shadow:
-        0 0 6px rgba(0,0,0,1),
-        0 2px 10px rgba(0,0,0,1);
-    }
-    .play-link:hover {
-      box-shadow: 0 0 24px rgba(255, 80, 80, 0.9), 0 0 40px rgba(255, 80, 80, 0.5);
-    }
     .bottom-controls {
       position: fixed;
       bottom: 40px;
@@ -110,24 +79,9 @@
   </style>
 </head>
 <body>
-  <div class="top-center">
-    <button class="play-link" id="playElement">niGhtmVreZ</button>
-  </div>
   <div class="bottom-controls">
     <a href="homepage.html" class="blue-btn">Nexus</a>
     <a href="thehallow.html" class="red-btn">The Hallow</a>
   </div>
-  <audio id="elementTrack" src="GZV.mp3" preload="auto"></audio>
-  <script>
-    const playBtn = document.getElementById('playElement');
-    const audio = document.getElementById('elementTrack');
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
-    });
-  </script>
 </body>
 </html>
